@@ -76,7 +76,7 @@ function createSettingsWindow(): void {
 
   settingsWindow = new BrowserWindow({
     width: 300,
-    height: 620,
+    height: 650,
     resizable: false,
     minimizable: false,
     maximizable: false,
@@ -362,8 +362,12 @@ function scheduleTimerAlarm(alarm: Alarm): void {
 
     triggerCustomAlarm(currentAlarm);
 
-    // 반복 설정 (타이머 알람은 트리거 후 다시 설정)
-    scheduleTimerAlarm(currentAlarm);
+    // 타이머 알람도 한 번 울리면 비활성화
+    store.updateAlarm(alarmId, { enabled: false });
+    if (settingsWindow) {
+      settingsWindow.webContents.send('alarms-data', store.getAlarms());
+      settingsWindow.webContents.send('timer-remaining', getTimerAlarmsRemainingTime());
+    }
   }, timerMs);
 
   activeTimerAlarms.set(alarmId, { timeout, triggerAt });
