@@ -1,0 +1,341 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+html, body {
+  width: 100%;
+  height: 100%;
+}
+
+/* 미니 윈도우 - 컴팩트 디자인 */
+body.mini-window {
+  background: transparent;
+  overflow: hidden;
+  -webkit-app-region: drag;
+}
+
+.mini-container {
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 30, 30, 0.92);
+  border-radius: 6px;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.top-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  justify-content: center;
+}
+
+.alarm-row {
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.mini-container.alarm {
+  background: rgba(60, 35, 35, 0.95);
+  border: 2px solid rgba(220, 80, 80, 0.7);
+  animation: alarm-pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes alarm-pulse {
+  0%, 100% {
+    box-shadow: 0 0 8px rgba(220, 80, 80, 0.4), 0 2px 6px rgba(0, 0, 0, 0.25);
+    border-color: rgba(220, 80, 80, 0.7);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(220, 80, 80, 0.8), 0 2px 6px rgba(0, 0, 0, 0.25);
+    border-color: rgba(255, 100, 100, 0.9);
+  }
+}
+
+.mini-container.alarm .top-row {
+  display: none;
+}
+
+.mini-container.alarm .alarm-row {
+  display: flex;
+}
+
+/* 기본 크기 (size-2) */
+.time-display {
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 1px;
+  font-variant-numeric: tabular-nums;
+}
+
+.btn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.7);
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.15s;
+  -webkit-app-region: no-drag;
+}
+
+.btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.btn-toggle {
+  padding: 4px 8px;
+  font-size: 11px;
+  min-width: 28px;
+}
+
+.alarm-message {
+  color: rgba(255, 255, 255, 0.85);
+  font-size: 12px;
+  text-align: center;
+}
+
+.stretch-timer {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 18px;
+  font-weight: 500;
+  font-variant-numeric: tabular-nums;
+}
+
+.btn-complete {
+  padding: 8px 24px;
+  font-size: 13px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.btn-complete:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.18);
+}
+
+.btn-complete:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* 크기 1: 작게 */
+.mini-container.size-1 .time-display {
+  font-size: 16px;
+}
+
+.mini-container.size-1 .btn-toggle {
+  padding: 3px 6px;
+  font-size: 10px;
+  min-width: 24px;
+}
+
+.mini-container.size-1 .alarm-message {
+  font-size: 10px;
+}
+
+.mini-container.size-1 .stretch-timer {
+  font-size: 14px;
+}
+
+.mini-container.size-1 .btn-complete {
+  padding: 6px 16px;
+  font-size: 11px;
+}
+
+/* 크기 3: 크게 */
+.mini-container.size-3 .time-display {
+  font-size: 26px;
+}
+
+.mini-container.size-3 .btn-toggle {
+  padding: 6px 12px;
+  font-size: 14px;
+  min-width: 36px;
+}
+
+.mini-container.size-3 .alarm-message {
+  font-size: 14px;
+}
+
+.mini-container.size-3 .stretch-timer {
+  font-size: 22px;
+}
+
+.mini-container.size-3 .btn-complete {
+  padding: 10px 28px;
+  font-size: 15px;
+}
+
+/* 설정 윈도우 - 다크 미니멀 */
+body.settings-window {
+  background: #1e1e1e;
+  padding: 16px;
+  overflow: hidden;
+}
+
+.settings-container {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 16px;
+}
+
+.setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #3a3a3a;
+}
+
+.setting-row:last-of-type {
+  border-bottom: none;
+}
+
+.setting-label {
+  color: #aaa;
+  font-size: 13px;
+}
+
+.setting-inline {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.setting-input {
+  width: 60px;
+  padding: 6px 8px;
+  background: #3a3a3a;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 13px;
+  text-align: center;
+}
+
+.setting-input:focus {
+  outline: none;
+  border-color: #666;
+}
+
+.setting-unit {
+  color: #777;
+  font-size: 12px;
+}
+
+.setting-toggle {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  color: #aaa;
+  font-size: 13px;
+}
+
+.setting-toggle input {
+  width: 16px;
+  height: 16px;
+  cursor: pointer;
+  accent-color: #666;
+}
+
+/* 크기 선택 */
+.size-options {
+  display: flex;
+  gap: 8px;
+}
+
+.size-option {
+  cursor: pointer;
+}
+
+.size-option input {
+  display: none;
+}
+
+.size-option span {
+  display: inline-block;
+  padding: 4px 10px;
+  background: #3a3a3a;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  color: #888;
+  font-size: 12px;
+  transition: all 0.15s;
+}
+
+.size-option input:checked + span {
+  background: #4a4a4a;
+  border-color: #666;
+  color: #fff;
+}
+
+.size-option:hover span {
+  border-color: #555;
+}
+
+.settings-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #3a3a3a;
+}
+
+.settings-btn {
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+  white-space: nowrap;
+}
+
+.settings-btn.reset {
+  flex: 1 1 100%;
+  background: #3a3a3a;
+  color: #888;
+  margin-bottom: 4px;
+}
+
+.settings-btn.reset:hover {
+  background: #4a4a4a;
+  color: #aaa;
+}
+
+.settings-btn.cancel {
+  flex: 1;
+  background: #3a3a3a;
+  color: #aaa;
+}
+
+.settings-btn.cancel:hover {
+  background: #4a4a4a;
+  color: #fff;
+}
+
+.settings-btn.save {
+  flex: 1;
+  background: #555;
+  color: #fff;
+}
+
+.settings-btn.save:hover {
+  background: #666;
+}

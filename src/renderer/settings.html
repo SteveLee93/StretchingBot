@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>설정</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="settings-window">
+  <div class="settings-container">
+    <div class="setting-row">
+      <span class="setting-label">알람 간격</span>
+      <div class="setting-inline">
+        <input type="number" class="setting-input" id="intervalInput" min="1" max="120" value="30">
+        <span class="setting-unit">분</span>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <span class="setting-label">대기 시간</span>
+      <div class="setting-inline">
+        <input type="number" class="setting-input" id="stretchInput" min="1" max="300" value="5">
+        <span class="setting-unit">초</span>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <span class="setting-label">UI 크기</span>
+      <div class="size-options">
+        <label class="size-option"><input type="radio" name="uiSize" value="1"><span>S</span></label>
+        <label class="size-option"><input type="radio" name="uiSize" value="2" checked><span>M</span></label>
+        <label class="size-option"><input type="radio" name="uiSize" value="3"><span>L</span></label>
+      </div>
+    </div>
+
+    <div class="setting-row">
+      <label class="setting-toggle">
+        <input type="checkbox" id="soundCheckbox">
+        <span>알람 소리</span>
+      </label>
+    </div>
+
+    <div class="setting-row">
+      <label class="setting-toggle">
+        <input type="checkbox" id="autoStartCheckbox">
+        <span>자동 실행</span>
+      </label>
+    </div>
+
+    <div class="settings-buttons">
+      <button class="settings-btn reset" id="resetPositionBtn">위치 초기화</button>
+      <button class="settings-btn cancel" id="cancelBtn">취소</button>
+      <button class="settings-btn save" id="saveBtn">저장</button>
+    </div>
+  </div>
+  <script src="settings.js"></script>
+</body>
+</html>

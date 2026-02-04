@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>StretchingBot</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="mini-window">
+  <div class="mini-container" id="container">
+    <div class="top-row">
+      <span class="time-display" id="timeDisplay">30:00</span>
+      <button class="btn btn-toggle" id="toggleBtn">⏸</button>
+    </div>
+    <div class="alarm-row">
+      <span class="alarm-message">스트레칭이 필요합니다!</span>
+      <span class="stretch-timer" id="stretchTimer">5</span>
+      <button class="btn btn-complete" id="completeBtn" disabled>대기중...</button>
+    </div>
+  </div>
+  <script src="renderer.js"></script>
+</body>
+</html>
