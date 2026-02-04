@@ -5,7 +5,7 @@
   "main": "dist/main/main.js",
   "scripts": {
     "prebuild": "node -e \"const fs=require('fs');fs.cpSync('src/renderer','.dist-renderer',{recursive:true})\"",
-    "build": "tsc && node -e \"const fs=require('fs');['index.html','settings.html','style.css'].forEach(f=>fs.copyFileSync('src/renderer/'+f,'dist/renderer/'+f))\"",
+    "build": "tsc && node -e \"const fs=require('fs');['index.html','settings.html','alarm.html','style.css'].forEach(f=>fs.copyFileSync('src/renderer/'+f,'dist/renderer/'+f))\"",
     "start": "npm run build && electron .",
     "dev": "npm run build && electron .",
     "pack": "npm run build && electron-builder --dir",

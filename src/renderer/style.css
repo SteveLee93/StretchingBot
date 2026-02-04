@@ -103,7 +103,7 @@ body.mini-window {
   min-width: 28px;
 }
 
-.alarm-message {
+.alarm-title {
   color: rgba(255, 255, 255, 0.85);
   font-size: 12px;
   text-align: center;
@@ -143,7 +143,7 @@ body.mini-window {
   min-width: 24px;
 }
 
-.mini-container.size-1 .alarm-message {
+.mini-container.size-1 .alarm-title {
   font-size: 10px;
 }
 
@@ -167,7 +167,7 @@ body.mini-window {
   min-width: 36px;
 }
 
-.mini-container.size-3 .alarm-message {
+.mini-container.size-3 .alarm-title {
   font-size: 14px;
 }
 
@@ -184,13 +184,15 @@ body.mini-window {
 body.settings-window {
   background: #1e1e1e;
   padding: 16px;
-  overflow: hidden;
+  overflow-y: auto;
+  height: 100%;
 }
 
 .settings-container {
   background: #2a2a2a;
   border-radius: 8px;
   padding: 16px;
+  min-height: fit-content;
 }
 
 .setting-row {
@@ -338,4 +340,345 @@ body.settings-window {
 
 .settings-btn.save:hover {
   background: #666;
+}
+
+/* 알람 관리 섹션 */
+.setting-section {
+  margin-top: 16px;
+  padding-top: 12px;
+  border-top: 1px solid #3a3a3a;
+}
+
+.setting-section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.setting-section-title {
+  color: #aaa;
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.btn-add-alarm {
+  background: #3a3a3a;
+  border: 1px solid #4a4a4a;
+  color: #aaa;
+  padding: 4px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 11px;
+  transition: all 0.15s;
+}
+
+.btn-add-alarm:hover {
+  background: #4a4a4a;
+  color: #fff;
+}
+
+.alarm-list {
+  max-height: 160px;
+  overflow-y: auto;
+  margin-bottom: 8px;
+}
+
+.alarm-list::-webkit-scrollbar {
+  width: 4px;
+}
+
+.alarm-list::-webkit-scrollbar-track {
+  background: #2a2a2a;
+}
+
+.alarm-list::-webkit-scrollbar-thumb {
+  background: #4a4a4a;
+  border-radius: 2px;
+}
+
+.alarm-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 8px;
+  background: #333;
+  border-radius: 4px;
+  margin-bottom: 6px;
+}
+
+.alarm-item:last-child {
+  margin-bottom: 0;
+}
+
+.alarm-item-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+  min-width: 0;
+}
+
+.alarm-item-title {
+  color: #ddd;
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.alarm-item-detail {
+  color: #777;
+  font-size: 10px;
+}
+
+.alarm-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 8px;
+}
+
+.alarm-toggle {
+  width: 14px;
+  height: 14px;
+  cursor: pointer;
+  accent-color: #666;
+}
+
+.btn-alarm-edit,
+.btn-alarm-delete {
+  background: transparent;
+  border: none;
+  color: #666;
+  cursor: pointer;
+  padding: 2px 4px;
+  font-size: 11px;
+  transition: color 0.15s;
+}
+
+.btn-alarm-edit:hover {
+  color: #aaa;
+}
+
+.btn-alarm-delete:hover {
+  color: #e55;
+}
+
+.alarm-empty {
+  color: #666;
+  font-size: 11px;
+  text-align: center;
+  padding: 16px;
+}
+
+/* 알람 편집 모달 */
+.alarm-edit-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 100;
+  justify-content: center;
+  align-items: center;
+}
+
+.alarm-edit-overlay.show {
+  display: flex;
+}
+
+.alarm-edit-modal {
+  background: #2a2a2a;
+  border-radius: 8px;
+  padding: 16px;
+  width: 260px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
+.alarm-modal-title {
+  color: #ddd;
+  font-size: 14px;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+.alarm-form-row {
+  margin-bottom: 12px;
+}
+
+.alarm-form-label {
+  color: #888;
+  font-size: 11px;
+  display: block;
+  margin-bottom: 4px;
+}
+
+.alarm-form-input {
+  width: 100%;
+  padding: 8px;
+  background: #3a3a3a;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  color: #fff;
+  font-size: 12px;
+}
+
+.alarm-form-input:focus {
+  outline: none;
+  border-color: #666;
+}
+
+/* 알람 타입 선택 */
+.alarm-type-options {
+  display: flex;
+  gap: 8px;
+}
+
+.alarm-type-option {
+  flex: 1;
+  cursor: pointer;
+}
+
+.alarm-type-option input {
+  display: none;
+}
+
+.alarm-type-option span {
+  display: block;
+  padding: 8px;
+  background: #3a3a3a;
+  border: 1px solid #4a4a4a;
+  border-radius: 4px;
+  color: #888;
+  font-size: 11px;
+  text-align: center;
+  transition: all 0.15s;
+}
+
+.alarm-type-option input:checked + span {
+  background: #4a4a4a;
+  border-color: #666;
+  color: #fff;
+}
+
+.alarm-type-option:hover span {
+  border-color: #555;
+}
+
+/* 요일 선택 */
+.day-selector {
+  display: flex;
+  gap: 4px;
+  justify-content: space-between;
+}
+
+.day-option {
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #3a3a3a;
+  border: 1px solid #4a4a4a;
+  border-radius: 50%;
+  color: #888;
+  font-size: 10px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.day-option.selected {
+  background: #4a4a4a;
+  border-color: #666;
+  color: #fff;
+}
+
+.day-option:hover {
+  border-color: #555;
+}
+
+/* 조건부 필드 */
+.alarm-time-fields,
+.alarm-timer-fields {
+  display: none;
+}
+
+.alarm-time-fields.show,
+.alarm-timer-fields.show {
+  display: block;
+}
+
+/* 모달 버튼 */
+.alarm-modal-buttons {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.alarm-modal-btn {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  border-radius: 4px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.alarm-modal-btn.cancel {
+  background: #3a3a3a;
+  color: #aaa;
+}
+
+.alarm-modal-btn.cancel:hover {
+  background: #4a4a4a;
+  color: #fff;
+}
+
+.alarm-modal-btn.save {
+  background: #555;
+  color: #fff;
+}
+
+.alarm-modal-btn.save:hover {
+  background: #666;
+}
+
+/* 인라인 입력 */
+.alarm-inline-input {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.alarm-inline-input .alarm-form-input {
+  width: 60px;
+  text-align: center;
+}
+
+.alarm-inline-unit {
+  color: #777;
+  font-size: 11px;
+}
+
+/* 체크박스 스타일 */
+.alarm-checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.alarm-checkbox-row input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: #666;
+}
+
+.alarm-checkbox-label {
+  color: #aaa;
+  font-size: 12px;
 }

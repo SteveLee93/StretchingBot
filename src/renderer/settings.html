@@ -46,12 +46,101 @@
       </label>
     </div>
 
+    <!-- 알람 관리 섹션 -->
+    <div class="setting-section">
+      <div class="setting-section-header">
+        <span class="setting-section-title">알람 관리</span>
+        <button class="btn-add-alarm" id="addAlarmBtn">+ 추가</button>
+      </div>
+      <div class="alarm-list" id="alarmList">
+        <div class="alarm-empty">등록된 알람이 없습니다</div>
+      </div>
+    </div>
+
     <div class="settings-buttons">
       <button class="settings-btn reset" id="resetPositionBtn">위치 초기화</button>
       <button class="settings-btn cancel" id="cancelBtn">취소</button>
       <button class="settings-btn save" id="saveBtn">저장</button>
     </div>
   </div>
+
+  <!-- 알람 편집 모달 -->
+  <div class="alarm-edit-overlay" id="alarmEditOverlay">
+    <div class="alarm-edit-modal">
+      <div class="alarm-modal-title" id="alarmModalTitle">알람 추가</div>
+
+      <div class="alarm-form-row">
+        <label class="alarm-form-label">제목</label>
+        <input type="text" class="alarm-form-input" id="alarmTitleInput" maxlength="20" placeholder="알람 제목 (최대 20자)">
+      </div>
+
+      <div class="alarm-form-row">
+        <label class="alarm-form-label">알람 타입</label>
+        <div class="alarm-type-options">
+          <label class="alarm-type-option">
+            <input type="radio" name="alarmType" value="time" checked>
+            <span>시간 지정</span>
+          </label>
+          <label class="alarm-type-option">
+            <input type="radio" name="alarmType" value="timer">
+            <span>타이머</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- 시간 기반 필드 -->
+      <div class="alarm-time-fields show" id="alarmTimeFields">
+        <div class="alarm-form-row">
+          <label class="alarm-form-label">알람 시간</label>
+          <input type="time" class="alarm-form-input" id="alarmTimeInput">
+        </div>
+        <div class="alarm-form-row">
+          <label class="alarm-form-label">반복 요일</label>
+          <div class="day-selector" id="daySelector">
+            <div class="day-option" data-day="0">일</div>
+            <div class="day-option" data-day="1">월</div>
+            <div class="day-option" data-day="2">화</div>
+            <div class="day-option" data-day="3">수</div>
+            <div class="day-option" data-day="4">목</div>
+            <div class="day-option" data-day="5">금</div>
+            <div class="day-option" data-day="6">토</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 타이머 기반 필드 -->
+      <div class="alarm-timer-fields" id="alarmTimerFields">
+        <div class="alarm-form-row">
+          <label class="alarm-form-label">타이머</label>
+          <div class="alarm-inline-input">
+            <input type="number" class="alarm-form-input" id="alarmTimerInput" min="1" max="1440" value="30">
+            <span class="alarm-inline-unit">분 후</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="alarm-form-row">
+        <label class="alarm-form-label">대기 시간</label>
+        <div class="alarm-inline-input">
+          <input type="number" class="alarm-form-input" id="alarmWaitInput" min="1" max="300" value="5">
+          <span class="alarm-inline-unit">초</span>
+        </div>
+      </div>
+
+      <div class="alarm-form-row">
+        <div class="alarm-checkbox-row">
+          <input type="checkbox" id="alarmSoundCheckbox" checked>
+          <label class="alarm-checkbox-label" for="alarmSoundCheckbox">알람 소리</label>
+        </div>
+      </div>
+
+      <div class="alarm-modal-buttons">
+        <button class="alarm-modal-btn cancel" id="alarmCancelBtn">취소</button>
+        <button class="alarm-modal-btn save" id="alarmSaveBtn">저장</button>
+      </div>
+    </div>
+  </div>
+
   <script src="settings.js"></script>
 </body>
 </html>

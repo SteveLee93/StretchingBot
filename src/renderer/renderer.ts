@@ -35,7 +35,7 @@
     updateSizeClass(size);
   });
 
-  // 알람 트리거 수신
+  // 알람 트리거 수신 (스트레칭 알람)
   ipcRenderer.on('alarm-triggered', (_event: any, data: { stretchSeconds: number }) => {
     isAlarmState = true;
     container.classList.add('alarm');
